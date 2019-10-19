@@ -1,5 +1,7 @@
 # gym_doom
 Gym environment for ViZDOOM
+### Install
+`pip install gym-doom`
 
 ### Requirements
  - [ViZDoom](https://github.com/mwydmuch/ViZDoom)
