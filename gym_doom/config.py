@@ -81,7 +81,7 @@ class Config:
         level = level.split('.')[0]
         if Config.is_initialized and project_dir is None:
             return
-        if Config.is_initialized and project_dir != Config.PROJECT_DIR:
+        if Config.is_initialized and project_dir is not None:
             Config.is_initialized = False
 
         if Config.is_initialized:
@@ -95,11 +95,12 @@ class Config:
 
         Config.VIZDOOM_SCENARIO_PATH = Config.PROJECT_DIR + Config.VIZDOOM_SCENARIO_FOLDER
 
-        all_files = []
+        cfg_files = []
         wad_files = []
         for file_name in os.listdir(Config.VIZDOOM_SCENARIO_PATH):
-            all_files.append(file_name)
             f_name, ext = file_name.split('.')
+            if ext == 'cfg':
+                cfg_files.append(file_name)
             if ext == 'wad':
                 wad_files.append(f_name)
 
@@ -109,7 +110,7 @@ class Config:
 
             sys.exit()
 
-        for file_name in all_files:
+        for file_name in cfg_files:
             f_name, ext = file_name.split('.')
             if ext == 'cfg':
                 if f_name not in wad_files:
